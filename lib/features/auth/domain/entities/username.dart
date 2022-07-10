@@ -16,7 +16,7 @@ class Username extends FormzInput<String, UsernameError> {
     if (value.isEmpty == true || value == "") {
       return UsernameError.empty;
     }
-    return _nameRegExp.hasMatch(value) && value.length < 8 && value.length > 3
+    return _nameRegExp.hasMatch(value) && value.length < 12 && value.length > 3
         ? null
         : value.isEmpty
             ? null
