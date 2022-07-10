@@ -1,11 +1,11 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive/hive.dart';
 import 'package:injectable/injectable.dart';
-import 'package:tictactoe/features/login/common/login_constants.dart';
-import 'package:tictactoe/features/login/domain/entities/user_model.dart';
+import 'package:tictactoe/features/auth/common/auth_constants.dart';
 
 import '../../../../core/di/di_constants.dart';
 import '../../../../core/error/exceptions.dart';
+import '../../../auth/domain/entities/user_model.dart';
 
 abstract class LoginLocalDataSource {
   Future<String> getToken();
@@ -27,12 +27,12 @@ class LoginLocalDataSourceImpl extends LoginLocalDataSource {
 
   @override
   Future<void> cacheToken(String token) {
-    return storage.write(key: LoginConstants.cachedToken, value: token);
+    return storage.write(key: AuthConstants.cachedToken, value: token);
   }
 
   @override
   Future<String> getToken() async {
-    String? token = await storage.read(key: LoginConstants.cachedToken);
+    String? token = await storage.read(key: AuthConstants.cachedToken);
     if (token == null) {
       throw TokenNotFoundException();
     }

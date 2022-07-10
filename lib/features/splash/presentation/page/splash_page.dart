@@ -15,8 +15,8 @@ class SplashPage extends StatelessWidget {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (_, state) {
         state.whenOrNull(
-          showLogin: () => router.push(const LoginRoute()),
-          showHome: () => router.push(const HomeRoute()),
+          showLogin: () => router.replace(const LoginRoute()),
+          showHome: () => router.replace(const HomeRoute()),
         );
       },
       builder: (context, state) => const Scaffold(body: LoadingIndicator()),

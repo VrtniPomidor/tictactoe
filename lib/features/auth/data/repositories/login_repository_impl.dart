@@ -38,8 +38,8 @@ class LoginRepositoryImpl implements LoginRepository {
         await localDataSource.cacheToken(loginResponse.token);
         await localDataSource.cacheUser(userModel);
         return Right(userModel);
-      } on ServerException {
-        return const Left(Failure.httpExternalException());
+      } on ServerException catch (e) {
+        return Left(Failure.httpExternalException(message: e.message));
       }
     } else {
       return const Left(Failure.noConnectionFailure());
@@ -60,5 +60,21 @@ class LoginRepositoryImpl implements LoginRepository {
   Future<Either<Failure, UserModel>> signOut() {
     // TODO: implement signOut
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, bool>> registerUser(
+      {required String username, required String password}) async {
+    bool isConnected = await networkInfo.isConnected();
+    if (isConnected) {
+      try {
+        await remoteDataSource.registerUser(username, password);
+        return const Right(true);
+      } on ServerException catch (e) {
+        return Left(Failure.httpExternalException(message: e.message));
+      }
+    } else {
+      return const Left(Failure.noConnectionFailure());
+    }
   }
 }

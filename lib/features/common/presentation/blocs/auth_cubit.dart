@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:tictactoe/features/login/domain/repositories/login_repository.dart';
+
+import '../../../auth/domain/repositories/login_repository.dart';
 
 part 'auth_cubit.freezed.dart';
 part 'auth_state.dart';

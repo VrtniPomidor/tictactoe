@@ -25,6 +25,7 @@ class PrimaryButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
+            onSurface: Theme.of(context).primaryColor,
           ),
           onPressed: isBusy ? null : onPressed,
           child: Container(

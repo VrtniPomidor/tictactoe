@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() httpExternalException,
+    required TResult Function(String message) httpExternalException,
     required TResult Function() httpUnAuthorizedError,
     required TResult Function() noConnectionFailure,
     required TResult Function() cacheFailure,
@@ -26,7 +26,7 @@ mixin _$Failure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? httpExternalException,
+    TResult Function(String message)? httpExternalException,
     TResult Function()? httpUnAuthorizedError,
     TResult Function()? noConnectionFailure,
     TResult Function()? cacheFailure,
@@ -34,7 +34,7 @@ mixin _$Failure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? httpExternalException,
+    TResult Function(String message)? httpExternalException,
     TResult Function()? httpUnAuthorizedError,
     TResult Function()? noConnectionFailure,
     TResult Function()? cacheFailure,
@@ -90,6 +90,7 @@ abstract class _$$_HttpExternalExceptionCopyWith<$Res> {
   factory _$$_HttpExternalExceptionCopyWith(_$_HttpExternalException value,
           $Res Function(_$_HttpExternalException) then) =
       __$$_HttpExternalExceptionCopyWithImpl<$Res>;
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -103,60 +104,85 @@ class __$$_HttpExternalExceptionCopyWithImpl<$Res>
   @override
   _$_HttpExternalException get _value =>
       super._value as _$_HttpExternalException;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$_HttpExternalException(
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_HttpExternalException implements _HttpExternalException {
-  const _$_HttpExternalException();
+  const _$_HttpExternalException({this.message = ''});
+
+  @override
+  @JsonKey()
+  final String message;
 
   @override
   String toString() {
-    return 'Failure.httpExternalException()';
+    return 'Failure.httpExternalException(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_HttpExternalException);
+        (other.runtimeType == runtimeType &&
+            other is _$_HttpExternalException &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_HttpExternalExceptionCopyWith<_$_HttpExternalException> get copyWith =>
+      __$$_HttpExternalExceptionCopyWithImpl<_$_HttpExternalException>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() httpExternalException,
+    required TResult Function(String message) httpExternalException,
     required TResult Function() httpUnAuthorizedError,
     required TResult Function() noConnectionFailure,
     required TResult Function() cacheFailure,
   }) {
-    return httpExternalException();
+    return httpExternalException(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? httpExternalException,
+    TResult Function(String message)? httpExternalException,
     TResult Function()? httpUnAuthorizedError,
     TResult Function()? noConnectionFailure,
     TResult Function()? cacheFailure,
   }) {
-    return httpExternalException?.call();
+    return httpExternalException?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? httpExternalException,
+    TResult Function(String message)? httpExternalException,
     TResult Function()? httpUnAuthorizedError,
     TResult Function()? noConnectionFailure,
     TResult Function()? cacheFailure,
     required TResult orElse(),
   }) {
     if (httpExternalException != null) {
-      return httpExternalException();
+      return httpExternalException(message);
     }
     return orElse();
   }
@@ -202,7 +228,13 @@ class _$_HttpExternalException implements _HttpExternalException {
 }
 
 abstract class _HttpExternalException implements Failure {
-  const factory _HttpExternalException() = _$_HttpExternalException;
+  const factory _HttpExternalException({final String message}) =
+      _$_HttpExternalException;
+
+  String get message;
+  @JsonKey(ignore: true)
+  _$$_HttpExternalExceptionCopyWith<_$_HttpExternalException> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -247,7 +279,7 @@ class _$_HttpUnAuthorizedError implements _HttpUnAuthorizedError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() httpExternalException,
+    required TResult Function(String message) httpExternalException,
     required TResult Function() httpUnAuthorizedError,
     required TResult Function() noConnectionFailure,
     required TResult Function() cacheFailure,
@@ -258,7 +290,7 @@ class _$_HttpUnAuthorizedError implements _HttpUnAuthorizedError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? httpExternalException,
+    TResult Function(String message)? httpExternalException,
     TResult Function()? httpUnAuthorizedError,
     TResult Function()? noConnectionFailure,
     TResult Function()? cacheFailure,
@@ -269,7 +301,7 @@ class _$_HttpUnAuthorizedError implements _HttpUnAuthorizedError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? httpExternalException,
+    TResult Function(String message)? httpExternalException,
     TResult Function()? httpUnAuthorizedError,
     TResult Function()? noConnectionFailure,
     TResult Function()? cacheFailure,
@@ -366,7 +398,7 @@ class _$_NoConnectionFailure implements _NoConnectionFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() httpExternalException,
+    required TResult Function(String message) httpExternalException,
     required TResult Function() httpUnAuthorizedError,
     required TResult Function() noConnectionFailure,
     required TResult Function() cacheFailure,
@@ -377,7 +409,7 @@ class _$_NoConnectionFailure implements _NoConnectionFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? httpExternalException,
+    TResult Function(String message)? httpExternalException,
     TResult Function()? httpUnAuthorizedError,
     TResult Function()? noConnectionFailure,
     TResult Function()? cacheFailure,
@@ -388,7 +420,7 @@ class _$_NoConnectionFailure implements _NoConnectionFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? httpExternalException,
+    TResult Function(String message)? httpExternalException,
     TResult Function()? httpUnAuthorizedError,
     TResult Function()? noConnectionFailure,
     TResult Function()? cacheFailure,
@@ -484,7 +516,7 @@ class _$_CacheFailure implements _CacheFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() httpExternalException,
+    required TResult Function(String message) httpExternalException,
     required TResult Function() httpUnAuthorizedError,
     required TResult Function() noConnectionFailure,
     required TResult Function() cacheFailure,
@@ -495,7 +527,7 @@ class _$_CacheFailure implements _CacheFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? httpExternalException,
+    TResult Function(String message)? httpExternalException,
     TResult Function()? httpUnAuthorizedError,
     TResult Function()? noConnectionFailure,
     TResult Function()? cacheFailure,
@@ -506,7 +538,7 @@ class _$_CacheFailure implements _CacheFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? httpExternalException,
+    TResult Function(String message)? httpExternalException,
     TResult Function()? httpUnAuthorizedError,
     TResult Function()? noConnectionFailure,
     TResult Function()? cacheFailure,

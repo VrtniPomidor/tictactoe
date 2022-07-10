@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:dio_logging_interceptor/dio_logging_interceptor.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tictactoe/core/network/api_client.dart';
 
@@ -15,9 +16,14 @@ abstract class NetworkModule {
   Dio dio(@Named(DiConstants.baseUrlName) String url) => Dio(BaseOptions(
         baseUrl: url,
       ))
-        ..interceptors.add(HeaderInterceptor());
+        ..interceptors.add(HeaderInterceptor())
+        ..interceptors.add(
+          DioLoggingInterceptor(
+            level: Level.body,
+            compact: false,
+          ),
+        );
 
   @lazySingleton
-  ApiClient apiClient(Dio dio, @Named(DiConstants.baseUrlName) String url) =>
-      ApiClient(dio);
+  ApiClient apiClient(Dio dio) => ApiClient(dio);
 }

@@ -9,17 +9,17 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i4;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
+import '../../features/auth/data/datasources/login_local_datasource.dart'
+    as _i6;
+import '../../features/auth/data/datasources/login_remote_datasource.dart'
+    as _i10;
+import '../../features/auth/data/repositories/login_repository_impl.dart'
+    as _i12;
+import '../../features/auth/domain/repositories/login_repository.dart' as _i11;
+import '../../features/auth/presentation/blocs/user_login/login_cubit.dart'
+    as _i14;
 import '../../features/common/presentation/blocs/auth_cubit.dart' as _i13;
 import '../../features/common/router/app_router.gr.dart' as _i3;
-import '../../features/login/data/datasources/login_local_datasource.dart'
-    as _i6;
-import '../../features/login/data/datasources/login_remote_datasource.dart'
-    as _i10;
-import '../../features/login/data/repositories/login_repository_impl.dart'
-    as _i12;
-import '../../features/login/domain/repositories/login_repository.dart' as _i11;
-import '../../features/login/presentation/blocs/user_login/login_cubit.dart'
-    as _i14;
 import '../network/api_client.dart' as _i9;
 import '../network/interceptors/header_interceptor.dart' as _i5;
 import '../network/network_info.dart' as _i7;
@@ -46,8 +46,8 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<String>(() => networkModule.baseUrl, instanceName: 'baseUrl');
   gh.lazySingleton<_i8.Dio>(
       () => networkModule.dio(get<String>(instanceName: 'baseUrl')));
-  gh.lazySingleton<_i9.ApiClient>(() => networkModule.apiClient(
-      get<_i8.Dio>(), get<String>(instanceName: 'baseUrl')));
+  gh.lazySingleton<_i9.ApiClient>(
+      () => networkModule.apiClient(get<_i8.Dio>()));
   gh.factory<_i10.LoginRemoteDataSource>(() =>
       _i10.LoginRemoteDataSourceImpl(restClientService: get<_i9.ApiClient>()));
   gh.factory<_i11.LoginRepository>(() => _i12.LoginRepositoryImpl(
