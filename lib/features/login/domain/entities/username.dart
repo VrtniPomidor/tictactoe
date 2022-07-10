@@ -8,7 +8,7 @@ class Username extends FormzInput<String, UsernameError> {
   const Username.dirty([String value = '']) : super.dirty(value);
 
   static final RegExp _nameRegExp = RegExp(
-    r'^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$',
+    r'^[a-zA-Z0-9_.-]*$',
   );
 
   @override
@@ -16,7 +16,7 @@ class Username extends FormzInput<String, UsernameError> {
     if (value.isEmpty == true || value == "") {
       return UsernameError.empty;
     }
-    return _nameRegExp.hasMatch(value) && value.length < 4
+    return _nameRegExp.hasMatch(value) && value.length < 8 && value.length > 3
         ? null
         : value.isEmpty
             ? null

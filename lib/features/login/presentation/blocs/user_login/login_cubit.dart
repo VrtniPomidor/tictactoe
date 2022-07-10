@@ -34,7 +34,18 @@ class LoginCubit extends Cubit<LoginState> {
 
   void logInWithCredentials() async {
     try {
-      emit(state.copyWith(status: FormzStatus.submissionInProgress));
+      // start validating
+      emit(state.copyWith(
+        autoValidate: true,
+      ));
+      // start validation only when sign in is clicked
+      var validate = Formz.validate([
+        Username.dirty(state.username.value),
+        Password.dirty(state.password.value)
+      ]);
+      emit(state.copyWith(status: validate));
+      if (!validate.isValid) return;
+      // If validation passed continue login
       await _loginRepository.loginUser(
           username: state.username.value, password: state.password.value);
       emit(state.copyWith(status: FormzStatus.submissionSuccess));

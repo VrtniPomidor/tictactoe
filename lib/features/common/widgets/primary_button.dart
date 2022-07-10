@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tictactoe/features/common/presentation/style/styles.dart';
 import 'package:tictactoe/features/common/widgets/loading_indicator.dart';
 
 class PrimaryButton extends StatelessWidget {
@@ -16,7 +17,7 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 15, right: 5),
+      padding: const EdgeInsets.only(top: 15),
       child: SizedBox(
         height: 45,
         child: ElevatedButton(
@@ -33,11 +34,7 @@ class PrimaryButton extends StatelessWidget {
                     width: 25, height: 25, child: LoadingIndicator())
                 : Text(
                     text,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
+                    style: appButtonTextStyle,
                   ),
           ),
         ),

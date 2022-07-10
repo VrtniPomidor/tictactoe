@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/widgets/auth_text_field.dart';
+import '../../domain/entities/password.dart';
+import '../../domain/entities/username.dart';
 import '../blocs/user_login/login_cubit.dart';
 
 class UsernameInputField extends StatelessWidget {
@@ -10,9 +12,9 @@ class UsernameInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AuthTextField(
+    return AuthTextField.username(
       hint: 'Username',
-      keyboardType: TextInputType.emailAddress,
+      autoValidate: state.autoValidate,
       error: state.username.error?.name,
       onChanged: (email) => context.read<LoginCubit>().usernameChanged(email),
     );
@@ -25,11 +27,9 @@ class PasswordInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AuthTextField(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+    return AuthTextField.password(
       hint: 'Password',
-      isPasswordField: true,
-      keyboardType: TextInputType.text,
+      autoValidate: state.autoValidate,
       error: state.password.error?.name,
       onChanged: (password) =>
           context.read<LoginCubit>().passwordChanged(password),

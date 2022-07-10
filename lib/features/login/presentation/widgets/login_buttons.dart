@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tictactoe/features/common/widgets/primary_button.dart';
 
+import '../../../common/widgets/text_button.dart';
 import '../blocs/user_login/login_cubit.dart';
 
 class LoginButton extends StatelessWidget {
@@ -27,11 +28,11 @@ class SignUpButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-        padding: EdgeInsets.only(top: 15),
-        child: PrimaryButton(
-          text: 'Sign up',
-          onPressed: null,
-        ));
+    return TextInkWellButton(
+      text: 'Don\'t have an account yet? Click here to create one',
+      onPressed: navigateToSignUp,
+    );
   }
+
+  void navigateToSignUp() {}
 }

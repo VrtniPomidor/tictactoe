@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:tictactoe/features/common/presentation/style/styles.dart';
 
+import '../../../common/widgets/app_divider.dart';
 import '../../../common/widgets/snackbar_widgets.dart';
 import '../blocs/user_login/login_cubit.dart';
-import '../widgets/login_with_email_buttons.dart';
-import '../widgets/sign_in_page_input_fields.dart';
+import '../widgets/login_buttons.dart';
+import '../widgets/login_input_fields.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -22,28 +24,25 @@ class LoginForm extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(snackBarWhenSuccess());
         }
       },
-      builder: (context, state) => Stack(
-        children: [
-          Positioned.fill(
-            child: Center(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(38.0, 0, 38.0, 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    UsernameInputField(state: state),
-                    PasswordInputField(state: state),
-                    LoginButton(
-                      isBusy: state.status.isSubmissionInProgress,
-                    ),
-                    const SignUpButton(),
-                  ],
-                ),
+      builder: (context, state) => Center(
+        child: SingleChildScrollView(
+          padding: appMargins,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              UsernameInputField(state: state),
+              AppDivider.vertical(),
+              PasswordInputField(state: state),
+              AppDivider.vertical(),
+              LoginButton(
+                isBusy: state.status.isSubmissionInProgress,
               ),
-            ),
+              AppDivider.vertical(),
+              const SignUpButton(),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

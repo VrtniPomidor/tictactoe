@@ -18,26 +18,27 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LoginState {
   Username get username => throw _privateConstructorUsedError;
   Password get password => throw _privateConstructorUsedError;
+  bool get autoValidate => throw _privateConstructorUsedError;
   FormzStatus get status => throw _privateConstructorUsedError;
   String get exceptionError => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Username username, Password password,
-            FormzStatus status, String exceptionError)
+            bool autoValidate, FormzStatus status, String exceptionError)
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Username username, Password password, FormzStatus status,
-            String exceptionError)?
+    TResult Function(Username username, Password password, bool autoValidate,
+            FormzStatus status, String exceptionError)?
         initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Username username, Password password, FormzStatus status,
-            String exceptionError)?
+    TResult Function(Username username, Password password, bool autoValidate,
+            FormzStatus status, String exceptionError)?
         initial,
     required TResult orElse(),
   }) =>
@@ -72,6 +73,7 @@ abstract class $LoginStateCopyWith<$Res> {
   $Res call(
       {Username username,
       Password password,
+      bool autoValidate,
       FormzStatus status,
       String exceptionError});
 }
@@ -88,6 +90,7 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
   $Res call({
     Object? username = freezed,
     Object? password = freezed,
+    Object? autoValidate = freezed,
     Object? status = freezed,
     Object? exceptionError = freezed,
   }) {
@@ -100,6 +103,10 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
+      autoValidate: autoValidate == freezed
+          ? _value.autoValidate
+          : autoValidate // ignore: cast_nullable_to_non_nullable
+              as bool,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -121,6 +128,7 @@ abstract class _$$_InitialCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
   $Res call(
       {Username username,
       Password password,
+      bool autoValidate,
       FormzStatus status,
       String exceptionError});
 }
@@ -138,6 +146,7 @@ class __$$_InitialCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
   $Res call({
     Object? username = freezed,
     Object? password = freezed,
+    Object? autoValidate = freezed,
     Object? status = freezed,
     Object? exceptionError = freezed,
   }) {
@@ -150,6 +159,10 @@ class __$$_InitialCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as Password,
+      autoValidate: autoValidate == freezed
+          ? _value.autoValidate
+          : autoValidate // ignore: cast_nullable_to_non_nullable
+              as bool,
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -168,6 +181,7 @@ class _$_Initial implements _Initial {
   const _$_Initial(
       {this.username = const Username.pure(),
       this.password = const Password.pure(),
+      this.autoValidate = false,
       this.status = FormzStatus.pure,
       this.exceptionError = ''});
 
@@ -179,6 +193,9 @@ class _$_Initial implements _Initial {
   final Password password;
   @override
   @JsonKey()
+  final bool autoValidate;
+  @override
+  @JsonKey()
   final FormzStatus status;
   @override
   @JsonKey()
@@ -186,7 +203,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'LoginState.initial(username: $username, password: $password, status: $status, exceptionError: $exceptionError)';
+    return 'LoginState.initial(username: $username, password: $password, autoValidate: $autoValidate, status: $status, exceptionError: $exceptionError)';
   }
 
   @override
@@ -196,6 +213,8 @@ class _$_Initial implements _Initial {
             other is _$_Initial &&
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality()
+                .equals(other.autoValidate, autoValidate) &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality()
                 .equals(other.exceptionError, exceptionError));
@@ -206,6 +225,7 @@ class _$_Initial implements _Initial {
       runtimeType,
       const DeepCollectionEquality().hash(username),
       const DeepCollectionEquality().hash(password),
+      const DeepCollectionEquality().hash(autoValidate),
       const DeepCollectionEquality().hash(status),
       const DeepCollectionEquality().hash(exceptionError));
 
@@ -218,32 +238,33 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Username username, Password password,
-            FormzStatus status, String exceptionError)
+            bool autoValidate, FormzStatus status, String exceptionError)
         initial,
   }) {
-    return initial(username, password, status, exceptionError);
+    return initial(username, password, autoValidate, status, exceptionError);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Username username, Password password, FormzStatus status,
-            String exceptionError)?
+    TResult Function(Username username, Password password, bool autoValidate,
+            FormzStatus status, String exceptionError)?
         initial,
   }) {
-    return initial?.call(username, password, status, exceptionError);
+    return initial?.call(
+        username, password, autoValidate, status, exceptionError);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Username username, Password password, FormzStatus status,
-            String exceptionError)?
+    TResult Function(Username username, Password password, bool autoValidate,
+            FormzStatus status, String exceptionError)?
         initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(username, password, status, exceptionError);
+      return initial(username, password, autoValidate, status, exceptionError);
     }
     return orElse();
   }
@@ -281,6 +302,7 @@ abstract class _Initial implements LoginState {
   const factory _Initial(
       {final Username username,
       final Password password,
+      final bool autoValidate,
       final FormzStatus status,
       final String exceptionError}) = _$_Initial;
 
@@ -288,6 +310,8 @@ abstract class _Initial implements LoginState {
   Username get username;
   @override
   Password get password;
+  @override
+  bool get autoValidate;
   @override
   FormzStatus get status;
   @override
