@@ -2,7 +2,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/di/di_init.dart';
 import '../../../auth/domain/repositories/login_repository.dart';
+import '../../router/app_router.gr.dart';
 
 part 'auth_cubit.freezed.dart';
 part 'auth_state.dart';
@@ -25,5 +27,10 @@ class AuthCubit extends Cubit<AuthState> {
     } catch (error) {
       emit(const AuthState.showLogin());
     }
+  }
+
+  void logout() async {
+    _loginRepository.signOut();
+    getIt<AppRouter>().replace(const LoginRoute());
   }
 }

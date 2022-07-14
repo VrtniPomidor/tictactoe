@@ -57,9 +57,23 @@ class LoginRepositoryImpl implements LoginRepository {
   }
 
   @override
-  Future<Either<Failure, UserModel>> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+  Future<Either<Failure, UserModel>> fetchCachedUser() async {
+    try {
+      final token = await localDataSource.getUser();
+      return Right(token);
+    } on TokenNotFoundException {
+      return const Left(Failure.cacheFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> signOut() async {
+    try {
+      await remoteDataSource.logoutUser();
+      return const Right(true);
+    } on TokenNotFoundException {
+      return const Left(Failure.cacheFailure());
+    }
   }
 
   @override

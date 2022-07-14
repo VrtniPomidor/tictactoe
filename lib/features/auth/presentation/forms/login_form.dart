@@ -42,7 +42,7 @@ class AppForm extends StatelessWidget {
       },
       builder: (context, state) => Center(
         child: SingleChildScrollView(
-          padding: appMargins,
+          padding: AppMargins.largeMargins,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,

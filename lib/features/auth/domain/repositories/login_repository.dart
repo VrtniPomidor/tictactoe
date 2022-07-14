@@ -12,5 +12,7 @@ abstract class LoginRepository {
 
   Future<Either<Failure, String>> fetchCachedToken();
 
-  Future<Either<Failure, UserModel>> signOut();
+  Future<Either<Failure, UserModel>> fetchCachedUser();
+
+  Future<Either<Failure, bool>> signOut();
 }

@@ -15,11 +15,11 @@ class Failure with _$Failure {
 }
 
 extension FailureExtension on Failure {
-  String get errorMessage => maybeWhen(
-      httpExternalException: (message) =>
-          message.isEmpty ? 'Something went wrong' : message,
-      httpUnAuthorizedError: () => 'Unauthorized',
-      noConnectionFailure: () => 'No connection',
-      cacheFailure: () => 'Failed cache',
-      orElse: () => 'Unknown error');
+  String get errorMessage => when(
+        httpExternalException: (message) =>
+            message.isEmpty ? 'Something went wrong' : message,
+        httpUnAuthorizedError: () => 'Unauthorized',
+        noConnectionFailure: () => 'No connection',
+        cacheFailure: () => 'Failed cache',
+      );
 }

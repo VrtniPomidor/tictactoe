@@ -3,10 +3,13 @@ import "dart:async";
 import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/http.dart';
 import 'package:tictactoe/core/network/api_constants.dart';
+import 'package:tictactoe/features/home/common/games_constants.dart';
+import 'package:tictactoe/features/home/games/data/models/games_page_wrapper.dart';
 
 import '../../features/auth/common/auth_constants.dart';
 import '../../features/auth/data/models/login_request.dart';
 import '../../features/auth/data/models/login_response.dart';
+import '../../features/home/players/data/models/players_page_wrapper.dart';
 
 part 'api_client.g.dart';
 
@@ -28,4 +31,17 @@ abstract class ApiClient {
 
   @POST(AuthConstants.logoutRoute)
   Future<void> logoutUser();
+
+  @GET(HomeConstants.gamesRoute)
+  Future<GamesPageWrapper> getGames({
+    @Query('status') String? status,
+    @Query('offset') required int offset,
+    @Query('limit') int limit = HomeConstants.pagingLimit,
+  });
+
+  @GET(HomeConstants.playersRoute)
+  Future<PlayersPageWrapper> getPlayers({
+    @Query('offset') required int offset,
+    @Query('limit') int limit = HomeConstants.pagingLimit,
+  });
 }

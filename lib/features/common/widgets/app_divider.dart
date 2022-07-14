@@ -8,13 +8,13 @@ class AppDivider extends StatelessWidget {
   factory AppDivider.vertical({Key? key}) => AppDivider._(
       key: key,
       widget: const SizedBox(
-        height: 15,
+        height: 20,
       ));
 
   factory AppDivider.horizontal({Key? key}) => AppDivider._(
       key: key,
       widget: const SizedBox(
-        width: 15,
+        width: 20,
       ));
 
   @override

@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tictactoe/core/error/failure.dart';
 
+import '../../../../common/presentation/strings/string_constants.dart';
 import '../../../domain/entities/password.dart';
 import '../../../domain/entities/username.dart';
 import '../../../domain/repositories/login_repository.dart';
@@ -49,7 +50,7 @@ class LoginCubit extends Cubit<LoginState> {
           (r) => emit(state.copyWith(status: FormzStatus.submissionSuccess)));
     } catch (error) {
       emit(state.copyWith(
-          exceptionError: "Unexpected error please try again later",
+          exceptionError: genericErrorMessage,
           status: FormzStatus.submissionFailure));
     }
   }

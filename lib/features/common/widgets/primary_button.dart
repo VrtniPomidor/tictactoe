@@ -14,6 +14,17 @@ class PrimaryButton extends StatelessWidget {
     this.isBusy = false,
   }) : super(key: key);
 
+  factory PrimaryButton.retry({
+    Key? key,
+    VoidCallback? onPressed,
+    bool isBusy = false,
+  }) =>
+      PrimaryButton(
+        text: 'Retry',
+        onPressed: onPressed,
+        isBusy: isBusy,
+      );
+
   @override
   Widget build(BuildContext context) {
     return Padding(

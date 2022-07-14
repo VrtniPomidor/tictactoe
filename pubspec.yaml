@@ -49,6 +49,9 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   auto_route: ^4.2.1
+  infinite_scroll_pagination: ^3.2.0
+  intl: ^0.17.0
+  rxdart: ^0.27.4
 
 dev_dependencies:
   flutter_test:

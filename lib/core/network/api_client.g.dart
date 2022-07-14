@@ -63,6 +63,48 @@ class _ApiClient implements ApiClient {
     return null;
   }
 
+  @override
+  Future<GamesPageWrapper> getGames(
+      {status, required offset, limit = HomeConstants.pagingLimit}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'status': status,
+      r'offset': offset,
+      r'limit': limit
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<GamesPageWrapper>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, '/games/',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = GamesPageWrapper.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<PlayersPageWrapper> getPlayers(
+      {required offset, limit = HomeConstants.pagingLimit}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'offset': offset,
+      r'limit': limit
+    };
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<PlayersPageWrapper>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, '/users/',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = PlayersPageWrapper.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
