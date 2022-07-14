@@ -7,27 +7,32 @@ import 'package:tictactoe/features/home/games/presentation/bloc/games_cubit.dart
 
 import 'game_item.dart';
 
-class PageDelegate extends StatefulWidget {
-  const PageDelegate({
+class GamesPageDelegate extends StatefulWidget {
+  const GamesPageDelegate({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<PageDelegate> createState() => _PageDelegateState();
+  State<GamesPageDelegate> createState() => _GamesPageDelegateState();
 }
 
-class _PageDelegateState extends State<PageDelegate> {
+class _GamesPageDelegateState extends State<GamesPageDelegate> {
   final PagingController<int, GameModel> _pagingController =
       PagingController(firstPageKey: 0);
 
   @override
   Widget build(BuildContext context) {
-    return PagedListView<int, GameModel>(
-      pagingController: _pagingController,
-      padding: AppMargins.defaultMargins.copyWith(top: 0),
-      builderDelegate: PagedChildBuilderDelegate<GameModel>(
-        itemBuilder: (context, item, index) => GameItem(
-          gameModel: item,
+    return RefreshIndicator(
+      onRefresh: () => Future.sync(
+        () => _pagingController.refresh(),
+      ),
+      child: PagedListView<int, GameModel>(
+        pagingController: _pagingController,
+        padding: AppMargins.defaultMargins.copyWith(top: 0),
+        builderDelegate: PagedChildBuilderDelegate<GameModel>(
+          itemBuilder: (context, item, index) => GameItem(
+            gameModel: item,
+          ),
         ),
       ),
     );

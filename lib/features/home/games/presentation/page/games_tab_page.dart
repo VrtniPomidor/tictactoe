@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tictactoe/features/home/games/presentation/bloc/games_cubit.dart';
-import 'package:tictactoe/features/home/games/presentation/widgets/page_delagete.dart';
+import 'package:tictactoe/features/home/games/presentation/widgets/games_page_delegate.dart';
 import 'package:tictactoe/features/home/games/presentation/widgets/status_dropdown.dart';
 
 import '../../../../common/widgets/snackbar_widgets.dart';
@@ -14,7 +14,7 @@ class GamesTabPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Add your onPressed code here!
+          // TODO create game
         },
         child: const Icon(Icons.add),
       ),
@@ -33,7 +33,7 @@ class GamesTabPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: const [
                 StatusDropdown(),
-                Expanded(child: PageDelegate()),
+                Expanded(child: GamesPageDelegate()),
               ],
             );
           }),

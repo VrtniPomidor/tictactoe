@@ -9,6 +9,7 @@ import 'package:tictactoe/features/home/games/data/models/games_page_wrapper.dar
 import '../../features/auth/common/auth_constants.dart';
 import '../../features/auth/data/models/login_request.dart';
 import '../../features/auth/data/models/login_response.dart';
+import '../../features/home/players/data/models/players_page_wrapper.dart';
 
 part 'api_client.g.dart';
 
@@ -39,5 +40,8 @@ abstract class ApiClient {
   });
 
   @GET(HomeConstants.playersRoute)
-  Future<GamesPageWrapper> getPlayers();
+  Future<PlayersPageWrapper> getPlayers({
+    @Query('offset') required int offset,
+    @Query('limit') int limit = HomeConstants.pagingLimit,
+  });
 }

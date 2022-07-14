@@ -86,18 +86,22 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<GamesPageWrapper> getPlayers() async {
+  Future<PlayersPageWrapper> getPlayers(
+      {required offset, limit = HomeConstants.pagingLimit}) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'offset': offset,
+      r'limit': limit
+    };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<GamesPageWrapper>(
+        _setStreamType<PlayersPageWrapper>(
             Options(method: 'GET', headers: _headers, extra: _extra)
                 .compose(_dio.options, '/users/',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GamesPageWrapper.fromJson(_result.data!);
+    final value = PlayersPageWrapper.fromJson(_result.data!);
     return value;
   }
 

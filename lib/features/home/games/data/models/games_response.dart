@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:tictactoe/features/home/games/data/models/player_response.dart';
+import 'package:tictactoe/features/home/common/data/models/player_response.dart';
 
 part 'games_response.freezed.dart';
 part 'games_response.g.dart';

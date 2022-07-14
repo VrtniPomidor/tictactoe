@@ -22,6 +22,10 @@ PlayerResponse _$PlayerResponseFromJson(Map<String, dynamic> json) {
 mixin _$PlayerResponse {
   int get id => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
+  @JsonKey(name: "game_count")
+  int get gameCount => throw _privateConstructorUsedError;
+  @JsonKey(name: "win_rate")
+  double get winRate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +38,11 @@ abstract class $PlayerResponseCopyWith<$Res> {
   factory $PlayerResponseCopyWith(
           PlayerResponse value, $Res Function(PlayerResponse) then) =
       _$PlayerResponseCopyWithImpl<$Res>;
-  $Res call({int id, String username});
+  $Res call(
+      {int id,
+      String username,
+      @JsonKey(name: "game_count") int gameCount,
+      @JsonKey(name: "win_rate") double winRate});
 }
 
 /// @nodoc
@@ -50,6 +58,8 @@ class _$PlayerResponseCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? username = freezed,
+    Object? gameCount = freezed,
+    Object? winRate = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -60,6 +70,14 @@ class _$PlayerResponseCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      gameCount: gameCount == freezed
+          ? _value.gameCount
+          : gameCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      winRate: winRate == freezed
+          ? _value.winRate
+          : winRate // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -71,7 +89,11 @@ abstract class _$$_PlayerResponseCopyWith<$Res>
           _$_PlayerResponse value, $Res Function(_$_PlayerResponse) then) =
       __$$_PlayerResponseCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String username});
+  $Res call(
+      {int id,
+      String username,
+      @JsonKey(name: "game_count") int gameCount,
+      @JsonKey(name: "win_rate") double winRate});
 }
 
 /// @nodoc
@@ -89,6 +111,8 @@ class __$$_PlayerResponseCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? username = freezed,
+    Object? gameCount = freezed,
+    Object? winRate = freezed,
   }) {
     return _then(_$_PlayerResponse(
       id: id == freezed
@@ -99,6 +123,14 @@ class __$$_PlayerResponseCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      gameCount: gameCount == freezed
+          ? _value.gameCount
+          : gameCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      winRate: winRate == freezed
+          ? _value.winRate
+          : winRate // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -106,7 +138,11 @@ class __$$_PlayerResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PlayerResponse implements _PlayerResponse {
-  const _$_PlayerResponse({required this.id, required this.username});
+  const _$_PlayerResponse(
+      {required this.id,
+      required this.username,
+      @JsonKey(name: "game_count") this.gameCount = 0,
+      @JsonKey(name: "win_rate") this.winRate = 0});
 
   factory _$_PlayerResponse.fromJson(Map<String, dynamic> json) =>
       _$$_PlayerResponseFromJson(json);
@@ -115,10 +151,16 @@ class _$_PlayerResponse implements _PlayerResponse {
   final int id;
   @override
   final String username;
+  @override
+  @JsonKey(name: "game_count")
+  final int gameCount;
+  @override
+  @JsonKey(name: "win_rate")
+  final double winRate;
 
   @override
   String toString() {
-    return 'PlayerResponse(id: $id, username: $username)';
+    return 'PlayerResponse(id: $id, username: $username, gameCount: $gameCount, winRate: $winRate)';
   }
 
   @override
@@ -127,7 +169,9 @@ class _$_PlayerResponse implements _PlayerResponse {
         (other.runtimeType == runtimeType &&
             other is _$_PlayerResponse &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.username, username));
+            const DeepCollectionEquality().equals(other.username, username) &&
+            const DeepCollectionEquality().equals(other.gameCount, gameCount) &&
+            const DeepCollectionEquality().equals(other.winRate, winRate));
   }
 
   @JsonKey(ignore: true)
@@ -135,7 +179,9 @@ class _$_PlayerResponse implements _PlayerResponse {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(username));
+      const DeepCollectionEquality().hash(username),
+      const DeepCollectionEquality().hash(gameCount),
+      const DeepCollectionEquality().hash(winRate));
 
   @JsonKey(ignore: true)
   @override
@@ -151,7 +197,9 @@ class _$_PlayerResponse implements _PlayerResponse {
 abstract class _PlayerResponse implements PlayerResponse {
   const factory _PlayerResponse(
       {required final int id,
-      required final String username}) = _$_PlayerResponse;
+      required final String username,
+      @JsonKey(name: "game_count") final int gameCount,
+      @JsonKey(name: "win_rate") final double winRate}) = _$_PlayerResponse;
 
   factory _PlayerResponse.fromJson(Map<String, dynamic> json) =
       _$_PlayerResponse.fromJson;
@@ -160,6 +208,12 @@ abstract class _PlayerResponse implements PlayerResponse {
   int get id;
   @override
   String get username;
+  @override
+  @JsonKey(name: "game_count")
+  int get gameCount;
+  @override
+  @JsonKey(name: "win_rate")
+  double get winRate;
   @override
   @JsonKey(ignore: true)
   _$$_PlayerResponseCopyWith<_$_PlayerResponse> get copyWith =>

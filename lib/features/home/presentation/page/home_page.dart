@@ -6,6 +6,7 @@ import 'package:tictactoe/core/di/di_init.dart';
 import '../../../common/presentation/blocs/auth_cubit.dart';
 import '../../../common/router/app_router.gr.dart';
 import '../../games/presentation/bloc/games_cubit.dart';
+import '../../players/presentation/bloc/players_cubit.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,6 +16,9 @@ class HomePage extends StatelessWidget {
     return MultiBlocProvider(providers: [
       BlocProvider(
         create: (context) => getIt<GamesCubit>(),
+      ),
+      BlocProvider(
+        create: (context) => getIt<PlayersCubit>(),
       ),
     ], child: const HomePageBody());
   }
