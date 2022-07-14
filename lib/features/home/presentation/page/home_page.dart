@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
       BlocProvider(
-        create: (context) => getIt<GamesCubit>()..getGames(),
+        create: (context) => getIt<GamesCubit>(),
       ),
     ], child: const HomePageBody());
   }
@@ -26,34 +26,36 @@ class HomePageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('TicTacToe'), actions: [
-          IconButton(
-            tooltip: 'Logout',
-            onPressed: logOut,
-            icon: const Icon(Icons.logout),
-          )
-        ]),
-        body: AutoTabsScaffold(
-            routes: const [
-              GamesTabRoute(),
-              PlayersTabRoute(),
+      appBar: AppBar(title: const Text('TicTacToe'), actions: [
+        IconButton(
+          tooltip: 'Logout',
+          onPressed: logOut,
+          icon: const Icon(Icons.logout),
+        )
+      ]),
+      body: AutoTabsScaffold(
+        routes: const [
+          GamesTabRoute(),
+          PlayersTabRoute(),
+        ],
+        bottomNavigationBuilder: (_, tabsRouter) {
+          return BottomNavigationBar(
+            currentIndex: tabsRouter.activeIndex,
+            onTap: tabsRouter.setActiveIndex,
+            items: const [
+              BottomNavigationBarItem(
+                label: 'Games',
+                icon: Icon(Icons.gamepad),
+              ),
+              BottomNavigationBarItem(
+                label: 'Players',
+                icon: Icon(Icons.people),
+              ),
             ],
-            bottomNavigationBuilder: (_, tabsRouter) {
-              return BottomNavigationBar(
-                currentIndex: tabsRouter.activeIndex,
-                onTap: tabsRouter.setActiveIndex,
-                items: const [
-                  BottomNavigationBarItem(
-                    label: 'Games',
-                    icon: Icon(Icons.gamepad),
-                  ),
-                  BottomNavigationBarItem(
-                    label: 'Players',
-                    icon: Icon(Icons.people),
-                  ),
-                ],
-              );
-            }));
+          );
+        },
+      ),
+    );
   }
 
   void logOut() {

@@ -16,26 +16,21 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GamesState {
-  List<GameModel> get games => throw _privateConstructorUsedError;
-  bool get isLoading => throw _privateConstructorUsedError;
+  FilterModel get filterModel => throw _privateConstructorUsedError;
   String get error => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<GameModel> games, bool isLoading, String error)
-        initial,
+    required TResult Function(FilterModel filterModel, String error) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<GameModel> games, bool isLoading, String error)?
-        initial,
+    TResult Function(FilterModel filterModel, String error)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<GameModel> games, bool isLoading, String error)?
-        initial,
+    TResult Function(FilterModel filterModel, String error)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -66,7 +61,7 @@ abstract class $GamesStateCopyWith<$Res> {
   factory $GamesStateCopyWith(
           GamesState value, $Res Function(GamesState) then) =
       _$GamesStateCopyWithImpl<$Res>;
-  $Res call({List<GameModel> games, bool isLoading, String error});
+  $Res call({FilterModel filterModel, String error});
 }
 
 /// @nodoc
@@ -79,19 +74,14 @@ class _$GamesStateCopyWithImpl<$Res> implements $GamesStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? games = freezed,
-    Object? isLoading = freezed,
+    Object? filterModel = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
-      games: games == freezed
-          ? _value.games
-          : games // ignore: cast_nullable_to_non_nullable
-              as List<GameModel>,
-      isLoading: isLoading == freezed
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
+      filterModel: filterModel == freezed
+          ? _value.filterModel
+          : filterModel // ignore: cast_nullable_to_non_nullable
+              as FilterModel,
       error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -106,7 +96,7 @@ abstract class _$$_InitialCopyWith<$Res> implements $GamesStateCopyWith<$Res> {
           _$_Initial value, $Res Function(_$_Initial) then) =
       __$$_InitialCopyWithImpl<$Res>;
   @override
-  $Res call({List<GameModel> games, bool isLoading, String error});
+  $Res call({FilterModel filterModel, String error});
 }
 
 /// @nodoc
@@ -120,19 +110,14 @@ class __$$_InitialCopyWithImpl<$Res> extends _$GamesStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? games = freezed,
-    Object? isLoading = freezed,
+    Object? filterModel = freezed,
     Object? error = freezed,
   }) {
     return _then(_$_Initial(
-      games: games == freezed
-          ? _value._games
-          : games // ignore: cast_nullable_to_non_nullable
-              as List<GameModel>,
-      isLoading: isLoading == freezed
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
+      filterModel: filterModel == freezed
+          ? _value.filterModel
+          : filterModel // ignore: cast_nullable_to_non_nullable
+              as FilterModel,
       error: error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -144,30 +129,18 @@ class __$$_InitialCopyWithImpl<$Res> extends _$GamesStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Initial implements _Initial {
-  const _$_Initial(
-      {final List<GameModel> games = const [],
-      this.isLoading = false,
-      this.error = ''})
-      : _games = games;
-
-  final List<GameModel> _games;
-  @override
-  @JsonKey()
-  List<GameModel> get games {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_games);
-  }
+  const _$_Initial({this.filterModel = FilterModel.all, this.error = ''});
 
   @override
   @JsonKey()
-  final bool isLoading;
+  final FilterModel filterModel;
   @override
   @JsonKey()
   final String error;
 
   @override
   String toString() {
-    return 'GamesState.initial(games: $games, isLoading: $isLoading, error: $error)';
+    return 'GamesState.initial(filterModel: $filterModel, error: $error)';
   }
 
   @override
@@ -175,16 +148,15 @@ class _$_Initial implements _Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Initial &&
-            const DeepCollectionEquality().equals(other._games, _games) &&
-            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
+            const DeepCollectionEquality()
+                .equals(other.filterModel, filterModel) &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_games),
-      const DeepCollectionEquality().hash(isLoading),
+      const DeepCollectionEquality().hash(filterModel),
       const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
@@ -195,31 +167,27 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<GameModel> games, bool isLoading, String error)
-        initial,
+    required TResult Function(FilterModel filterModel, String error) initial,
   }) {
-    return initial(games, isLoading, error);
+    return initial(filterModel, error);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<GameModel> games, bool isLoading, String error)?
-        initial,
+    TResult Function(FilterModel filterModel, String error)? initial,
   }) {
-    return initial?.call(games, isLoading, error);
+    return initial?.call(filterModel, error);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<GameModel> games, bool isLoading, String error)?
-        initial,
+    TResult Function(FilterModel filterModel, String error)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(games, isLoading, error);
+      return initial(filterModel, error);
     }
     return orElse();
   }
@@ -254,15 +222,11 @@ class _$_Initial implements _Initial {
 }
 
 abstract class _Initial implements GamesState {
-  const factory _Initial(
-      {final List<GameModel> games,
-      final bool isLoading,
-      final String error}) = _$_Initial;
+  const factory _Initial({final FilterModel filterModel, final String error}) =
+      _$_Initial;
 
   @override
-  List<GameModel> get games;
-  @override
-  bool get isLoading;
+  FilterModel get filterModel;
   @override
   String get error;
   @override

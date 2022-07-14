@@ -18,7 +18,7 @@ class GamesRemoteDataSourceImpl extends GamesRemoteDataSource {
   @override
   Future<GamesPageWrapper> getGames({String? status, int offset = 0}) async {
     try {
-      return await restClientService.getGames(status: null, offset: offset);
+      return await restClientService.getGames(status: status, offset: offset);
     } on DioError catch (e) {
       final exception = e.parseError();
       throw exception;

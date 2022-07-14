@@ -5,7 +5,7 @@ import 'package:tictactoe/core/di/di_init.dart';
 import 'package:tictactoe/features/common/widgets/primary_button.dart';
 
 import '../../../common/router/app_router.gr.dart';
-import '../../../common/widgets/text_button.dart';
+import '../../../common/widgets/text_inkwell_button.dart';
 import '../blocs/user_login/login_cubit.dart';
 
 class LoginButton extends StatelessWidget {

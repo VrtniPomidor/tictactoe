@@ -427,6 +427,7 @@ abstract class _GameModel implements GameModel {
 mixin _$PlayerModel {
   int get id => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
+  bool get isMe => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlayerModelCopyWith<PlayerModel> get copyWith =>
@@ -438,7 +439,7 @@ abstract class $PlayerModelCopyWith<$Res> {
   factory $PlayerModelCopyWith(
           PlayerModel value, $Res Function(PlayerModel) then) =
       _$PlayerModelCopyWithImpl<$Res>;
-  $Res call({int id, String username});
+  $Res call({int id, String username, bool isMe});
 }
 
 /// @nodoc
@@ -453,6 +454,7 @@ class _$PlayerModelCopyWithImpl<$Res> implements $PlayerModelCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? username = freezed,
+    Object? isMe = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -463,6 +465,10 @@ class _$PlayerModelCopyWithImpl<$Res> implements $PlayerModelCopyWith<$Res> {
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      isMe: isMe == freezed
+          ? _value.isMe
+          : isMe // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -474,7 +480,7 @@ abstract class _$$_PlayerModelCopyWith<$Res>
           _$_PlayerModel value, $Res Function(_$_PlayerModel) then) =
       __$$_PlayerModelCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String username});
+  $Res call({int id, String username, bool isMe});
 }
 
 /// @nodoc
@@ -491,6 +497,7 @@ class __$$_PlayerModelCopyWithImpl<$Res> extends _$PlayerModelCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? username = freezed,
+    Object? isMe = freezed,
   }) {
     return _then(_$_PlayerModel(
       id: id == freezed
@@ -501,6 +508,10 @@ class __$$_PlayerModelCopyWithImpl<$Res> extends _$PlayerModelCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      isMe: isMe == freezed
+          ? _value.isMe
+          : isMe // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -508,16 +519,19 @@ class __$$_PlayerModelCopyWithImpl<$Res> extends _$PlayerModelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_PlayerModel implements _PlayerModel {
-  _$_PlayerModel({required this.id, required this.username});
+  _$_PlayerModel({required this.id, required this.username, this.isMe = false});
 
   @override
   final int id;
   @override
   final String username;
+  @override
+  @JsonKey()
+  final bool isMe;
 
   @override
   String toString() {
-    return 'PlayerModel(id: $id, username: $username)';
+    return 'PlayerModel(id: $id, username: $username, isMe: $isMe)';
   }
 
   @override
@@ -526,14 +540,16 @@ class _$_PlayerModel implements _PlayerModel {
         (other.runtimeType == runtimeType &&
             other is _$_PlayerModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.username, username));
+            const DeepCollectionEquality().equals(other.username, username) &&
+            const DeepCollectionEquality().equals(other.isMe, isMe));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(username));
+      const DeepCollectionEquality().hash(username),
+      const DeepCollectionEquality().hash(isMe));
 
   @JsonKey(ignore: true)
   @override
@@ -543,12 +559,16 @@ class _$_PlayerModel implements _PlayerModel {
 
 abstract class _PlayerModel implements PlayerModel {
   factory _PlayerModel(
-      {required final int id, required final String username}) = _$_PlayerModel;
+      {required final int id,
+      required final String username,
+      final bool isMe}) = _$_PlayerModel;
 
   @override
   int get id;
   @override
   String get username;
+  @override
+  bool get isMe;
   @override
   @JsonKey(ignore: true)
   _$$_PlayerModelCopyWith<_$_PlayerModel> get copyWith =>
