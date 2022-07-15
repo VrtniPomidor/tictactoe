@@ -8,6 +8,7 @@ part 'games_response.g.dart';
 class GameResponse with _$GameResponse {
   const factory GameResponse({
     required int id,
+    required List<List<int?>> board,
     required PlayerResponse? winner,
     @JsonKey(name: 'first_player') required PlayerResponse? firstPlayer,
     @JsonKey(name: 'second_player')required PlayerResponse? secondPlayer,

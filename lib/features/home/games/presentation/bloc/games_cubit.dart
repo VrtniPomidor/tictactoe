@@ -30,7 +30,7 @@ class GamesCubit extends Cubit<GamesState> {
       final result = await _gamesRepository.getGames(
           offset: offset, status: onFilterChanged.value.status);
 
-      result.fold((l) => state.copyWith(error: l.errorMessage), (r) {
+      result.fold((l) => emit(state.copyWith(error: l.errorMessage)), (r) {
         final isLastPage = offset + HomeConstants.pagingLimit >= r.count;
         if (isLastPage) {
           pagingController.appendLastPage(r.results);

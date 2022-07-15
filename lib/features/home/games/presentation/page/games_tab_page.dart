@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tictactoe/core/di/di_init.dart';
+import 'package:tictactoe/features/common/router/app_router.gr.dart';
 import 'package:tictactoe/features/home/games/presentation/bloc/games_cubit.dart';
 import 'package:tictactoe/features/home/games/presentation/widgets/games_page_delegate.dart';
 import 'package:tictactoe/features/home/games/presentation/widgets/status_dropdown.dart';
@@ -14,7 +16,7 @@ class GamesTabPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // TODO create game
+          getIt<AppRouter>().push(TicTacToeRoute());
         },
         child: const Icon(Icons.add),
       ),

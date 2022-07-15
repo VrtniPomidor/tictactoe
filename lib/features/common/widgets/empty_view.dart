@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe/features/common/widgets/primary_button.dart';
 
+import 'app_divider.dart';
 import 'texts/text_title.dart';
 
 class EmptyView extends StatelessWidget {
@@ -15,9 +16,9 @@ class EmptyView extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          const VerticalDivider(),
+          AppDivider.vertical(),
           TextTitle(text: emptyMessage),
-          const VerticalDivider(),
+          AppDivider.vertical(),
           PrimaryButton.retry(
             onPressed: onPressed,
           )

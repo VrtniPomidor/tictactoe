@@ -1,17 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'games_response.dart';
+part of 'create_game_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GameResponse _$$_GameResponseFromJson(Map<String, dynamic> json) =>
-    _$_GameResponse(
-      id: json['id'] as int,
-      board: (json['board'] as List<dynamic>)
-          .map((e) => (e as List<dynamic>).map((e) => e as int?).toList())
-          .toList(),
+_$_CreateGameRequest _$$_CreateGameRequestFromJson(Map<String, dynamic> json) =>
+    _$_CreateGameRequest(
       winner: json['winner'] == null
           ? null
           : PlayerResponse.fromJson(json['winner'] as Map<String, dynamic>),
@@ -23,17 +19,12 @@ _$_GameResponse _$$_GameResponseFromJson(Map<String, dynamic> json) =>
           ? null
           : PlayerResponse.fromJson(
               json['second_player'] as Map<String, dynamic>),
-      created: DateTime.parse(json['created'] as String),
-      status: json['status'] as String,
     );
 
-Map<String, dynamic> _$$_GameResponseToJson(_$_GameResponse instance) =>
+Map<String, dynamic> _$$_CreateGameRequestToJson(
+        _$_CreateGameRequest instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'board': instance.board,
       'winner': instance.winner,
       'first_player': instance.firstPlayer,
       'second_player': instance.secondPlayer,
-      'created': instance.created.toIso8601String(),
-      'status': instance.status,
     };

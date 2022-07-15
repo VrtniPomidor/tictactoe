@@ -6,6 +6,7 @@ import 'package:tictactoe/features/home/presentation/page/home_page.dart';
 import '../../auth/presentation/pages/login_page.dart';
 import '../../auth/presentation/pages/register_page.dart';
 import '../../splash/presentation/page/splash_page.dart';
+import '../../tictactoe/presentation/page/tictactoe_page.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -17,6 +18,7 @@ import '../../splash/presentation/page/splash_page.dart';
       AutoRoute(page: GamesTabPage, initial: true),
       AutoRoute(page: PlayersTabPage),
     ]),
+    AutoRoute(path: 'tictactoe/:id', page: TicTacToePage),
   ],
 )
 class $AppRouter {}

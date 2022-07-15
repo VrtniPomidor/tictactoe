@@ -25,7 +25,7 @@ class PlayersCubit extends Cubit<PlayersState> {
       int offset = (pageKey * HomeConstants.pagingLimit).toInt();
       final result = await _playersRepository.getPlayers(offset: offset);
 
-      result.fold((l) => state.copyWith(error: l.errorMessage), (r) {
+      result.fold((l) => emit(state.copyWith(error: l.errorMessage)), (r) {
         final isLastPage = offset + HomeConstants.pagingLimit >= r.count;
         if (isLastPage) {
           pagingController.appendLastPage(r.results);

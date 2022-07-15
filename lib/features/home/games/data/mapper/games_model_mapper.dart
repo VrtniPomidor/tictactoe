@@ -9,15 +9,17 @@ extension GamesPageModelMapper on GamesPageWrapper {
   GamesWrapperModel mapToGamesModel({UserModel? userModel}) {
     return GamesWrapperModel(
       count: count,
-      results: results.map((e) => e.mapToGamesModel(userModel)).toList(),
+      results:
+          results.map((e) => e.mapToGamesModel(userModel: userModel)).toList(),
     );
   }
 }
 
 extension GamesModelMapper on GameResponse {
-  GameModel mapToGamesModel(UserModel? userModel) {
+  GameModel mapToGamesModel({UserModel? userModel}) {
     return GameModel(
       id: id,
+      board: board,
       winner: winner?.mapToPlayerModel(),
       firstPlayer: firstPlayer?.mapToPlayerModel(userModel: userModel),
       secondPlayer: secondPlayer?.mapToPlayerModel(userModel: userModel),
