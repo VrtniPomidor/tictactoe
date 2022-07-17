@@ -1,11 +1,35 @@
+import 'package:tictactoe/features/home/games/domain/entities/game_model.dart';
+
+import '../../data/tictactoe_constants.dart';
+
 mixin GameMixin {
   // 1st player is O
   bool oTurn = true;
+  bool imO = false;
+  bool imPlayer = false;
+  bool waitingOnPlayers = true;
   List<String> displayElement = ['', '', '', '', '', '', '', '', ''];
   List<int> winningIndexes = [];
   int filledBoxes = 0;
+  VictoryType victoryType = VictoryType.progress;
 
-  void parseGrid(List<List<int?>> grid, int firstPlayerId, int secondPlayerId) {
+  /// Call this every time data refreshes
+  void setupBoard(List<List<int?>> grid, PlayerModel firstPlayer,
+      PlayerModel secondPlayer) {
+    waitingOnPlayers = false;
+    _parseGrid(grid, firstPlayer.id, secondPlayer.id);
+    _checkEntries();
+    _setupPlayerTurn();
+    _checkImPlaying(firstPlayer, secondPlayer);
+  }
+
+  void _checkEntries() {
+    filledBoxes = displayElement.where((element) => element != '').length;
+    victoryType = _checkWinner();
+  }
+
+  void _parseGrid(
+      List<List<int?>> grid, int firstPlayerId, int secondPlayerId) {
     int index = 0;
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {
@@ -13,6 +37,19 @@ mixin GameMixin {
             getGridValueForValue(grid[i][j], firstPlayerId, secondPlayerId);
       }
     }
+  }
+
+  void _setupPlayerTurn() {
+    oTurn = displayElement.where((element) => element != '').length.isEven;
+  }
+
+  void _checkImPlaying(PlayerModel firstPlayer, PlayerModel secondPlayer) {
+    imPlayer = firstPlayer.isMe == true || secondPlayer.isMe == true;
+    if (imPlayer) imO = firstPlayer.isMe == true;
+  }
+
+  bool isMyTurn() {
+    return imPlayer && oTurn == imO;
   }
 
   String getGridValueForValue(
@@ -34,7 +71,7 @@ mixin GameMixin {
     }
 
     oTurn = !oTurn;
-    _checkWinner();
+    victoryType = _checkWinner();
   }
 
   VictoryType _checkWinner() {
@@ -83,7 +120,7 @@ mixin GameMixin {
         displayElement[0] == displayElement[8] &&
         displayElement[0] != '') {
       winningIndexes = [0, 4, 8];
-      findWinner(displayElement[0]);
+      return findWinner(displayElement[0]);
     }
     if (displayElement[2] == displayElement[4] &&
         displayElement[2] == displayElement[6] &&
@@ -98,6 +135,12 @@ mixin GameMixin {
 
   VictoryType findWinner(String char) {
     return char == 'O' ? VictoryType.winO : VictoryType.winX;
+  }
+
+  List<int> getColumnAndRowFromIndex({required int index}) {
+    final row = index ~/ TictactoeConstants.columns;
+    final column = index % TictactoeConstants.columns;
+    return [row, column];
   }
 }
 

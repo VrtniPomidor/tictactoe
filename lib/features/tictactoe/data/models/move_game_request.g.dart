@@ -9,11 +9,11 @@ part of 'move_game_request.dart';
 _$_MoveGameRequest _$$_MoveGameRequestFromJson(Map<String, dynamic> json) =>
     _$_MoveGameRequest(
       row: json['row'] as int,
-      column: json['column'] as int,
+      column: json['col'] as int,
     );
 
 Map<String, dynamic> _$$_MoveGameRequestToJson(_$_MoveGameRequest instance) =>
     <String, dynamic>{
       'row': instance.row,
-      'column': instance.column,
+      'col': instance.column,
     };

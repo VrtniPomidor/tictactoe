@@ -7,7 +7,7 @@ part 'move_game_request.g.dart';
 class MoveGameRequest with _$MoveGameRequest {
   const factory MoveGameRequest({
     required int row,
-    required int column,
+    @JsonKey(name: 'col') required int column,
   }) = _MoveGameRequest;
 
   factory MoveGameRequest.fromJson(Map<String, dynamic> json) =>

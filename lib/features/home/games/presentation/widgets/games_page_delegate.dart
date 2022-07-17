@@ -51,7 +51,6 @@ class _GamesPageDelegateState extends State<GamesPageDelegate> {
 
   @override
   void dispose() {
-    context.read<GamesCubit>().onFilterChanged.close();
     _pagingController.dispose();
     super.dispose();
   }

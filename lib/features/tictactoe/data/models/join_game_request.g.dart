@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'create_game_request.dart';
+part of 'join_game_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CreateGameRequest _$$_CreateGameRequestFromJson(Map<String, dynamic> json) =>
-    _$_CreateGameRequest(
+_$_JoinGameRequest _$$_JoinGameRequestFromJson(Map<String, dynamic> json) =>
+    _$_JoinGameRequest(
       winner: json['winner'] == null
           ? null
           : PlayerResponse.fromJson(json['winner'] as Map<String, dynamic>),
@@ -21,8 +21,7 @@ _$_CreateGameRequest _$$_CreateGameRequestFromJson(Map<String, dynamic> json) =>
               json['second_player'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_CreateGameRequestToJson(
-        _$_CreateGameRequest instance) =>
+Map<String, dynamic> _$$_JoinGameRequestToJson(_$_JoinGameRequest instance) =>
     <String, dynamic>{
       'winner': instance.winner,
       'first_player': instance.firstPlayer,

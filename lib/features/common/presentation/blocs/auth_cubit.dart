@@ -15,7 +15,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   AuthCubit(this._loginRepository) : super(const AuthState.initial());
 
-  void checkIsLoggedIn() async {
+  Future<void> checkIsLoggedIn() async {
     try {
       var token = await _loginRepository.fetchCachedToken();
       token.fold(
@@ -29,8 +29,13 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void logout() async {
+  Future<void> logout() async {
     _loginRepository.signOut();
+    loggedOut();
+  }
+
+  Future<void> loggedOut() async {
+    _loginRepository.clearStorage();
     getIt<AppRouter>().replace(const LoginRoute());
   }
 }

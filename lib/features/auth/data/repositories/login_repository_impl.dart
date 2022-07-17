@@ -91,4 +91,14 @@ class LoginRepositoryImpl implements LoginRepository {
       return const Left(Failure.noConnectionFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, void>> clearStorage() async {
+    try {
+      await localDataSource.clearStorage();
+      return const Right(null);
+    } on TokenNotFoundException {
+      return const Left(Failure.cacheFailure());
+    }
+  }
 }

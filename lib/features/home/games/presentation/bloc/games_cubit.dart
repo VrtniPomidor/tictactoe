@@ -46,4 +46,10 @@ class GamesCubit extends Cubit<GamesState> {
   Future<void> setFilter(FilterModel filterModel) async {
     onFilterChanged.add(filterModel);
   }
+
+  @override
+  Future<void> close() {
+    onFilterChanged.close();
+    return super.close();
+  }
 }

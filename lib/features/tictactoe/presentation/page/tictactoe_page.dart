@@ -5,8 +5,11 @@ import 'package:tictactoe/core/di/di_init.dart';
 import 'package:tictactoe/features/common/presentation/style/styles.dart';
 import 'package:tictactoe/features/common/widgets/app_divider.dart';
 import 'package:tictactoe/features/common/widgets/loading_indicator.dart';
+import 'package:tictactoe/features/common/widgets/primary_button.dart';
+import 'package:tictactoe/features/tictactoe/data/tictactoe_constants.dart';
 import 'package:tictactoe/features/tictactoe/presentation/bloc/tictactoe_cubit.dart';
 import 'package:tictactoe/features/tictactoe/presentation/widgets/game_players.dart';
+import 'package:tictactoe/features/tictactoe/presentation/widgets/player_turn.dart';
 import 'package:tictactoe/features/tictactoe/presentation/widgets/playing_as.dart';
 
 import '../../../common/widgets/empty_view.dart';
@@ -45,11 +48,11 @@ class TicTacToeBody extends StatelessWidget {
       }
     }, builder: (context, state) {
       if (state.isLoading) return const Center(child: LoadingIndicator());
-      if (state.error.isNotEmpty) {
+      if (state.showErrorScreen) {
         return Center(
             child: EmptyView(
           emptyMessage: 'Something went wrong. Please try again.',
-          onPressed: () => context.read<TictactoeCubit>().getGame(),
+          onPressed: () => context.read<TictactoeCubit>().refresh(),
         ));
       }
       return SingleChildScrollView(
@@ -59,29 +62,50 @@ class TicTacToeBody extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               GamePlayers(
-                winner: state.gameModel?.winner,
-                firstPlayer: state.gameModel?.firstPlayer,
-                secondPlayer: state.gameModel?.secondPlayer,
+                gameModel: state.gameModel,
               ),
               AppDivider.vertical(),
-              const PlayingAs(type: 'O'),
+              if (state.imPlaying) ...[
+                PlayingAs(
+                  type: state.imO ? 'O' : 'X',
+                  isLoading: state.onMoveLoading,
+                ),
+                AppDivider.vertical()
+              ],
+              PlayerTurn(
+                victoryType: state.victoryType,
+                type: state.oTurn ? 'O' : 'X',
+              ),
               AppDivider.vertical(),
               AppDivider.vertical(),
               GridView.count(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                crossAxisCount: 3,
+                crossAxisCount: TictactoeConstants.columns,
                 // generate the widgets that will display the board
-                children: List.generate(9, (index) {
+                children: List.generate(TictactoeConstants.fields, (index) {
                   return Field(
-                      idx: index,
-                      onTap: state.isBoardBlocked
-                          ? null
-                          : (index) =>
-                              context.read<TictactoeCubit>().tapped(index),
-                      playerSymbol: state.displayElement[index]);
+                    idx: index,
+                    onTap: state.isBoardBlocked
+                        ? null
+                        : (index) => context
+                            .read<TictactoeCubit>()
+                            .makeMove(index: index),
+                    playerSymbol: state.displayElement[index],
+                    isWinIndex: state.winner.contains(index),
+                  );
                 }),
               ),
+              AppDivider.vertical(),
+              if (state.showJoinGameButton)
+                SizedBox(
+                  width: 150,
+                  child: PrimaryButton(
+                    text: 'Join game',
+                    onPressed: () => context.read<TictactoeCubit>().joinGame(),
+                    isBusy: state.joinGameButtonBusy,
+                  ),
+                )
             ],
           ),
         ),

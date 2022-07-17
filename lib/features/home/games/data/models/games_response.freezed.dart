@@ -224,8 +224,8 @@ class _$_GameResponse implements _GameResponse {
       {required this.id,
       required final List<List<int?>> board,
       required this.winner,
-      @JsonKey(name: 'first_player') required this.firstPlayer,
-      @JsonKey(name: 'second_player') required this.secondPlayer,
+      @JsonKey(name: 'first_player') this.firstPlayer,
+      @JsonKey(name: 'second_player') this.secondPlayer,
       required this.created,
       required this.status})
       : _board = board;
@@ -304,10 +304,8 @@ abstract class _GameResponse implements GameResponse {
       {required final int id,
       required final List<List<int?>> board,
       required final PlayerResponse? winner,
-      @JsonKey(name: 'first_player')
-          required final PlayerResponse? firstPlayer,
-      @JsonKey(name: 'second_player')
-          required final PlayerResponse? secondPlayer,
+      @JsonKey(name: 'first_player') final PlayerResponse? firstPlayer,
+      @JsonKey(name: 'second_player') final PlayerResponse? secondPlayer,
       required final DateTime created,
       required final String status}) = _$_GameResponse;
 

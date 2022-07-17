@@ -4,12 +4,14 @@ class Field extends StatelessWidget {
   final int idx;
   final Function(int idx)? onTap;
   final String playerSymbol;
+  final bool isWinIndex;
 
   const Field({
     Key? key,
     required this.idx,
     required this.onTap,
     required this.playerSymbol,
+    required this.isWinIndex,
   }) : super(key: key);
 
   final BorderSide _borderSide = const BorderSide(
@@ -23,7 +25,11 @@ class Field extends StatelessWidget {
         margin: const EdgeInsets.all(0.0),
         decoration: BoxDecoration(border: _determineBorder()),
         child: Center(
-            child: Text(playerSymbol, style: const TextStyle(fontSize: 50))),
+            child: Text(playerSymbol,
+                style: TextStyle(
+                  fontSize: 50,
+                  color: isWinIndex ? Colors.green : Colors.black87,
+                ))),
       ),
     );
   }

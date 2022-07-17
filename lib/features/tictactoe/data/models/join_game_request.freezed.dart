@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'create_game_request.dart';
+part of 'join_game_request.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-CreateGameRequest _$CreateGameRequestFromJson(Map<String, dynamic> json) {
-  return _CreateGameRequest.fromJson(json);
+JoinGameRequest _$JoinGameRequestFromJson(Map<String, dynamic> json) {
+  return _JoinGameRequest.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CreateGameRequest {
+mixin _$JoinGameRequest {
   PlayerResponse? get winner => throw _privateConstructorUsedError;
   @JsonKey(name: 'first_player')
   PlayerResponse? get firstPlayer => throw _privateConstructorUsedError;
@@ -28,15 +28,15 @@ mixin _$CreateGameRequest {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CreateGameRequestCopyWith<CreateGameRequest> get copyWith =>
+  $JoinGameRequestCopyWith<JoinGameRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateGameRequestCopyWith<$Res> {
-  factory $CreateGameRequestCopyWith(
-          CreateGameRequest value, $Res Function(CreateGameRequest) then) =
-      _$CreateGameRequestCopyWithImpl<$Res>;
+abstract class $JoinGameRequestCopyWith<$Res> {
+  factory $JoinGameRequestCopyWith(
+          JoinGameRequest value, $Res Function(JoinGameRequest) then) =
+      _$JoinGameRequestCopyWithImpl<$Res>;
   $Res call(
       {PlayerResponse? winner,
       @JsonKey(name: 'first_player') PlayerResponse? firstPlayer,
@@ -48,13 +48,13 @@ abstract class $CreateGameRequestCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CreateGameRequestCopyWithImpl<$Res>
-    implements $CreateGameRequestCopyWith<$Res> {
-  _$CreateGameRequestCopyWithImpl(this._value, this._then);
+class _$JoinGameRequestCopyWithImpl<$Res>
+    implements $JoinGameRequestCopyWith<$Res> {
+  _$JoinGameRequestCopyWithImpl(this._value, this._then);
 
-  final CreateGameRequest _value;
+  final JoinGameRequest _value;
   // ignore: unused_field
-  final $Res Function(CreateGameRequest) _then;
+  final $Res Function(JoinGameRequest) _then;
 
   @override
   $Res call({
@@ -113,11 +113,11 @@ class _$CreateGameRequestCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_CreateGameRequestCopyWith<$Res>
-    implements $CreateGameRequestCopyWith<$Res> {
-  factory _$$_CreateGameRequestCopyWith(_$_CreateGameRequest value,
-          $Res Function(_$_CreateGameRequest) then) =
-      __$$_CreateGameRequestCopyWithImpl<$Res>;
+abstract class _$$_JoinGameRequestCopyWith<$Res>
+    implements $JoinGameRequestCopyWith<$Res> {
+  factory _$$_JoinGameRequestCopyWith(
+          _$_JoinGameRequest value, $Res Function(_$_JoinGameRequest) then) =
+      __$$_JoinGameRequestCopyWithImpl<$Res>;
   @override
   $Res call(
       {PlayerResponse? winner,
@@ -133,15 +133,15 @@ abstract class _$$_CreateGameRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CreateGameRequestCopyWithImpl<$Res>
-    extends _$CreateGameRequestCopyWithImpl<$Res>
-    implements _$$_CreateGameRequestCopyWith<$Res> {
-  __$$_CreateGameRequestCopyWithImpl(
-      _$_CreateGameRequest _value, $Res Function(_$_CreateGameRequest) _then)
-      : super(_value, (v) => _then(v as _$_CreateGameRequest));
+class __$$_JoinGameRequestCopyWithImpl<$Res>
+    extends _$JoinGameRequestCopyWithImpl<$Res>
+    implements _$$_JoinGameRequestCopyWith<$Res> {
+  __$$_JoinGameRequestCopyWithImpl(
+      _$_JoinGameRequest _value, $Res Function(_$_JoinGameRequest) _then)
+      : super(_value, (v) => _then(v as _$_JoinGameRequest));
 
   @override
-  _$_CreateGameRequest get _value => super._value as _$_CreateGameRequest;
+  _$_JoinGameRequest get _value => super._value as _$_JoinGameRequest;
 
   @override
   $Res call({
@@ -149,7 +149,7 @@ class __$$_CreateGameRequestCopyWithImpl<$Res>
     Object? firstPlayer = freezed,
     Object? secondPlayer = freezed,
   }) {
-    return _then(_$_CreateGameRequest(
+    return _then(_$_JoinGameRequest(
       winner: winner == freezed
           ? _value.winner
           : winner // ignore: cast_nullable_to_non_nullable
@@ -168,14 +168,14 @@ class __$$_CreateGameRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CreateGameRequest implements _CreateGameRequest {
-  const _$_CreateGameRequest(
-      {required this.winner,
+class _$_JoinGameRequest implements _JoinGameRequest {
+  const _$_JoinGameRequest(
+      {this.winner,
       @JsonKey(name: 'first_player') this.firstPlayer,
       @JsonKey(name: 'second_player') this.secondPlayer});
 
-  factory _$_CreateGameRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_CreateGameRequestFromJson(json);
+  factory _$_JoinGameRequest.fromJson(Map<String, dynamic> json) =>
+      _$$_JoinGameRequestFromJson(json);
 
   @override
   final PlayerResponse? winner;
@@ -188,14 +188,14 @@ class _$_CreateGameRequest implements _CreateGameRequest {
 
   @override
   String toString() {
-    return 'CreateGameRequest(winner: $winner, firstPlayer: $firstPlayer, secondPlayer: $secondPlayer)';
+    return 'JoinGameRequest(winner: $winner, firstPlayer: $firstPlayer, secondPlayer: $secondPlayer)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CreateGameRequest &&
+            other is _$_JoinGameRequest &&
             const DeepCollectionEquality().equals(other.winner, winner) &&
             const DeepCollectionEquality()
                 .equals(other.firstPlayer, firstPlayer) &&
@@ -213,25 +213,24 @@ class _$_CreateGameRequest implements _CreateGameRequest {
 
   @JsonKey(ignore: true)
   @override
-  _$$_CreateGameRequestCopyWith<_$_CreateGameRequest> get copyWith =>
-      __$$_CreateGameRequestCopyWithImpl<_$_CreateGameRequest>(
-          this, _$identity);
+  _$$_JoinGameRequestCopyWith<_$_JoinGameRequest> get copyWith =>
+      __$$_JoinGameRequestCopyWithImpl<_$_JoinGameRequest>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CreateGameRequestToJson(this);
+    return _$$_JoinGameRequestToJson(this);
   }
 }
 
-abstract class _CreateGameRequest implements CreateGameRequest {
-  const factory _CreateGameRequest(
-          {required final PlayerResponse? winner,
+abstract class _JoinGameRequest implements JoinGameRequest {
+  const factory _JoinGameRequest(
+          {final PlayerResponse? winner,
           @JsonKey(name: 'first_player') final PlayerResponse? firstPlayer,
           @JsonKey(name: 'second_player') final PlayerResponse? secondPlayer}) =
-      _$_CreateGameRequest;
+      _$_JoinGameRequest;
 
-  factory _CreateGameRequest.fromJson(Map<String, dynamic> json) =
-      _$_CreateGameRequest.fromJson;
+  factory _JoinGameRequest.fromJson(Map<String, dynamic> json) =
+      _$_JoinGameRequest.fromJson;
 
   @override
   PlayerResponse? get winner;
@@ -243,6 +242,6 @@ abstract class _CreateGameRequest implements CreateGameRequest {
   PlayerResponse? get secondPlayer;
   @override
   @JsonKey(ignore: true)
-  _$$_CreateGameRequestCopyWith<_$_CreateGameRequest> get copyWith =>
+  _$$_JoinGameRequestCopyWith<_$_JoinGameRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -6,7 +6,6 @@ import 'package:tictactoe/core/network/api_constants.dart';
 import 'package:tictactoe/features/home/common/games_constants.dart';
 import 'package:tictactoe/features/home/games/data/models/games_page_wrapper.dart';
 import 'package:tictactoe/features/home/games/data/models/games_response.dart';
-import 'package:tictactoe/features/tictactoe/data/models/create_game_request.dart';
 import 'package:tictactoe/features/tictactoe/data/models/move_game_request.dart';
 import 'package:tictactoe/features/tictactoe/data/tictactoe_constants.dart';
 
@@ -57,13 +56,12 @@ abstract class ApiClient {
   @POST(HomeConstants.gamesRoute)
   Future<GameResponse> createGame();
 
-  @GET(TictactoeConstants.gameJoinRoute)
-  Future<GameResponse> joinGame({
+  @POST(TictactoeConstants.gameJoinRoute)
+  Future<void> joinGame({
     @Path('id') required int id,
-    @Body() required CreateGameRequest createGameRequest,
   });
 
-  @GET(TictactoeConstants.gameMoveRoute)
+  @POST(TictactoeConstants.gameMoveRoute)
   Future<void> moveGame({
     @Path('id') required int id,
     @Body() required MoveGameRequest moveGameRequest,

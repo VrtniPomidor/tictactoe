@@ -35,4 +35,58 @@ class TictactoeRepositoryImpl implements TictactoeRepository {
       return const Left(Failure.noConnectionFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, GameModel>> createGame() async {
+    bool isConnected = await networkInfo.isConnected();
+    if (isConnected) {
+      try {
+        var result = await remoteDataSource.createGame();
+        var user = await loginRepository.fetchCachedUser();
+        return user.fold((l) => Right(result.mapToGamesModel()),
+            (r) => Right(result.mapToGamesModel(userModel: r)));
+      } on ServerException catch (e) {
+        return Left(Failure.httpExternalException(message: e.message));
+      }
+    } else {
+      return const Left(Failure.noConnectionFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> joinGame({required int id}) async {
+    bool isConnected = await networkInfo.isConnected();
+    if (isConnected) {
+      try {
+        await remoteDataSource.joinGame(
+          gameId: id,
+        );
+        return const Right(null);
+      } on ServerException catch (e) {
+        return Left(Failure.httpExternalException(message: e.message));
+      }
+    } else {
+      return const Left(Failure.noConnectionFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> makeMove(
+      {required int id, required int row, required int column}) async {
+    bool isConnected = await networkInfo.isConnected();
+    if (isConnected) {
+      try {
+        await remoteDataSource.makeMove(
+          gameId: id,
+          row: row,
+          column: column,
+        );
+        return const Right(null);
+      } on ServerException catch (e) {
+        return Left(Failure.httpExternalException(message: e.message));
+      }
+    } else {
+      return const Left(Failure.noConnectionFailure());
+    }
+  }
 }

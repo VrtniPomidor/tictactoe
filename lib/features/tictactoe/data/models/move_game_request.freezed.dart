@@ -21,6 +21,7 @@ MoveGameRequest _$MoveGameRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$MoveGameRequest {
   int get row => throw _privateConstructorUsedError;
+  @JsonKey(name: 'col')
   int get column => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +35,7 @@ abstract class $MoveGameRequestCopyWith<$Res> {
   factory $MoveGameRequestCopyWith(
           MoveGameRequest value, $Res Function(MoveGameRequest) then) =
       _$MoveGameRequestCopyWithImpl<$Res>;
-  $Res call({int row, int column});
+  $Res call({int row, @JsonKey(name: 'col') int column});
 }
 
 /// @nodoc
@@ -71,7 +72,7 @@ abstract class _$$_MoveGameRequestCopyWith<$Res>
           _$_MoveGameRequest value, $Res Function(_$_MoveGameRequest) then) =
       __$$_MoveGameRequestCopyWithImpl<$Res>;
   @override
-  $Res call({int row, int column});
+  $Res call({int row, @JsonKey(name: 'col') int column});
 }
 
 /// @nodoc
@@ -106,7 +107,8 @@ class __$$_MoveGameRequestCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_MoveGameRequest implements _MoveGameRequest {
-  const _$_MoveGameRequest({required this.row, required this.column});
+  const _$_MoveGameRequest(
+      {required this.row, @JsonKey(name: 'col') required this.column});
 
   factory _$_MoveGameRequest.fromJson(Map<String, dynamic> json) =>
       _$$_MoveGameRequestFromJson(json);
@@ -114,6 +116,7 @@ class _$_MoveGameRequest implements _MoveGameRequest {
   @override
   final int row;
   @override
+  @JsonKey(name: 'col')
   final int column;
 
   @override
@@ -150,7 +153,8 @@ class _$_MoveGameRequest implements _MoveGameRequest {
 
 abstract class _MoveGameRequest implements MoveGameRequest {
   const factory _MoveGameRequest(
-      {required final int row, required final int column}) = _$_MoveGameRequest;
+      {required final int row,
+      @JsonKey(name: 'col') required final int column}) = _$_MoveGameRequest;
 
   factory _MoveGameRequest.fromJson(Map<String, dynamic> json) =
       _$_MoveGameRequest.fromJson;
@@ -158,6 +162,7 @@ abstract class _MoveGameRequest implements MoveGameRequest {
   @override
   int get row;
   @override
+  @JsonKey(name: 'col')
   int get column;
   @override
   @JsonKey(ignore: true)
