@@ -15,4 +15,6 @@ abstract class LoginRepository {
   Future<Either<Failure, UserModel>> fetchCachedUser();
 
   Future<Either<Failure, bool>> signOut();
+
+  Future<Either<Failure, void>> clearStorage();
 }

@@ -159,6 +159,7 @@ abstract class _GamesWrapperModel implements GamesWrapperModel {
 /// @nodoc
 mixin _$GameModel {
   int get id => throw _privateConstructorUsedError;
+  List<List<int?>> get board => throw _privateConstructorUsedError;
   PlayerModel? get winner => throw _privateConstructorUsedError;
   PlayerModel? get firstPlayer => throw _privateConstructorUsedError;
   PlayerModel? get secondPlayer => throw _privateConstructorUsedError;
@@ -176,6 +177,7 @@ abstract class $GameModelCopyWith<$Res> {
       _$GameModelCopyWithImpl<$Res>;
   $Res call(
       {int id,
+      List<List<int?>> board,
       PlayerModel? winner,
       PlayerModel? firstPlayer,
       PlayerModel? secondPlayer,
@@ -198,6 +200,7 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? board = freezed,
     Object? winner = freezed,
     Object? firstPlayer = freezed,
     Object? secondPlayer = freezed,
@@ -209,6 +212,10 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      board: board == freezed
+          ? _value.board
+          : board // ignore: cast_nullable_to_non_nullable
+              as List<List<int?>>,
       winner: winner == freezed
           ? _value.winner
           : winner // ignore: cast_nullable_to_non_nullable
@@ -274,6 +281,7 @@ abstract class _$$_GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
   @override
   $Res call(
       {int id,
+      List<List<int?>> board,
       PlayerModel? winner,
       PlayerModel? firstPlayer,
       PlayerModel? secondPlayer,
@@ -301,6 +309,7 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? board = freezed,
     Object? winner = freezed,
     Object? firstPlayer = freezed,
     Object? secondPlayer = freezed,
@@ -312,6 +321,10 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      board: board == freezed
+          ? _value._board
+          : board // ignore: cast_nullable_to_non_nullable
+              as List<List<int?>>,
       winner: winner == freezed
           ? _value.winner
           : winner // ignore: cast_nullable_to_non_nullable
@@ -341,14 +354,23 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
 class _$_GameModel implements _GameModel {
   _$_GameModel(
       {required this.id,
-      required this.winner,
-      required this.firstPlayer,
-      required this.secondPlayer,
+      required final List<List<int?>> board,
+      this.winner,
+      this.firstPlayer,
+      this.secondPlayer,
       required this.created,
-      required this.status});
+      required this.status})
+      : _board = board;
 
   @override
   final int id;
+  final List<List<int?>> _board;
+  @override
+  List<List<int?>> get board {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_board);
+  }
+
   @override
   final PlayerModel? winner;
   @override
@@ -362,7 +384,7 @@ class _$_GameModel implements _GameModel {
 
   @override
   String toString() {
-    return 'GameModel(id: $id, winner: $winner, firstPlayer: $firstPlayer, secondPlayer: $secondPlayer, created: $created, status: $status)';
+    return 'GameModel(id: $id, board: $board, winner: $winner, firstPlayer: $firstPlayer, secondPlayer: $secondPlayer, created: $created, status: $status)';
   }
 
   @override
@@ -371,6 +393,7 @@ class _$_GameModel implements _GameModel {
         (other.runtimeType == runtimeType &&
             other is _$_GameModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other._board, _board) &&
             const DeepCollectionEquality().equals(other.winner, winner) &&
             const DeepCollectionEquality()
                 .equals(other.firstPlayer, firstPlayer) &&
@@ -384,6 +407,7 @@ class _$_GameModel implements _GameModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(_board),
       const DeepCollectionEquality().hash(winner),
       const DeepCollectionEquality().hash(firstPlayer),
       const DeepCollectionEquality().hash(secondPlayer),
@@ -399,14 +423,17 @@ class _$_GameModel implements _GameModel {
 abstract class _GameModel implements GameModel {
   factory _GameModel(
       {required final int id,
-      required final PlayerModel? winner,
-      required final PlayerModel? firstPlayer,
-      required final PlayerModel? secondPlayer,
+      required final List<List<int?>> board,
+      final PlayerModel? winner,
+      final PlayerModel? firstPlayer,
+      final PlayerModel? secondPlayer,
       required final DateTime created,
       required final String status}) = _$_GameModel;
 
   @override
   int get id;
+  @override
+  List<List<int?>> get board;
   @override
   PlayerModel? get winner;
   @override

@@ -32,7 +32,6 @@ class AppForm extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
               snackBarWhenFailure(snackBarFailureText: state.exceptionError));
         } else if (state.status.isSubmissionSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(snackBarWhenSuccess());
           if (formType.isRegister) {
             getIt<AppRouter>().replace(const LoginRoute());
           } else if (formType.isLogin) {

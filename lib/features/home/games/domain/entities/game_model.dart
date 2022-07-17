@@ -15,9 +15,10 @@ class GamesWrapperModel with _$GamesWrapperModel {
 class GameModel with _$GameModel {
   factory GameModel({
     required int id,
-    required PlayerModel? winner,
-    required PlayerModel? firstPlayer,
-    required PlayerModel? secondPlayer,
+    required List<List<int?>> board,
+    PlayerModel? winner,
+    PlayerModel? firstPlayer,
+    PlayerModel? secondPlayer,
     required DateTime created,
     required String status,
   }) = _GameModel;

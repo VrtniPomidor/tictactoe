@@ -21,6 +21,7 @@ GameResponse _$GameResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GameResponse {
   int get id => throw _privateConstructorUsedError;
+  List<List<int?>> get board => throw _privateConstructorUsedError;
   PlayerResponse? get winner => throw _privateConstructorUsedError;
   @JsonKey(name: 'first_player')
   PlayerResponse? get firstPlayer => throw _privateConstructorUsedError;
@@ -42,6 +43,7 @@ abstract class $GameResponseCopyWith<$Res> {
       _$GameResponseCopyWithImpl<$Res>;
   $Res call(
       {int id,
+      List<List<int?>> board,
       PlayerResponse? winner,
       @JsonKey(name: 'first_player') PlayerResponse? firstPlayer,
       @JsonKey(name: 'second_player') PlayerResponse? secondPlayer,
@@ -64,6 +66,7 @@ class _$GameResponseCopyWithImpl<$Res> implements $GameResponseCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? board = freezed,
     Object? winner = freezed,
     Object? firstPlayer = freezed,
     Object? secondPlayer = freezed,
@@ -75,6 +78,10 @@ class _$GameResponseCopyWithImpl<$Res> implements $GameResponseCopyWith<$Res> {
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      board: board == freezed
+          ? _value.board
+          : board // ignore: cast_nullable_to_non_nullable
+              as List<List<int?>>,
       winner: winner == freezed
           ? _value.winner
           : winner // ignore: cast_nullable_to_non_nullable
@@ -141,6 +148,7 @@ abstract class _$$_GameResponseCopyWith<$Res>
   @override
   $Res call(
       {int id,
+      List<List<int?>> board,
       PlayerResponse? winner,
       @JsonKey(name: 'first_player') PlayerResponse? firstPlayer,
       @JsonKey(name: 'second_player') PlayerResponse? secondPlayer,
@@ -169,6 +177,7 @@ class __$$_GameResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? board = freezed,
     Object? winner = freezed,
     Object? firstPlayer = freezed,
     Object? secondPlayer = freezed,
@@ -180,6 +189,10 @@ class __$$_GameResponseCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      board: board == freezed
+          ? _value._board
+          : board // ignore: cast_nullable_to_non_nullable
+              as List<List<int?>>,
       winner: winner == freezed
           ? _value.winner
           : winner // ignore: cast_nullable_to_non_nullable
@@ -209,17 +222,26 @@ class __$$_GameResponseCopyWithImpl<$Res>
 class _$_GameResponse implements _GameResponse {
   const _$_GameResponse(
       {required this.id,
+      required final List<List<int?>> board,
       required this.winner,
-      @JsonKey(name: 'first_player') required this.firstPlayer,
-      @JsonKey(name: 'second_player') required this.secondPlayer,
+      @JsonKey(name: 'first_player') this.firstPlayer,
+      @JsonKey(name: 'second_player') this.secondPlayer,
       required this.created,
-      required this.status});
+      required this.status})
+      : _board = board;
 
   factory _$_GameResponse.fromJson(Map<String, dynamic> json) =>
       _$$_GameResponseFromJson(json);
 
   @override
   final int id;
+  final List<List<int?>> _board;
+  @override
+  List<List<int?>> get board {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_board);
+  }
+
   @override
   final PlayerResponse? winner;
   @override
@@ -235,7 +257,7 @@ class _$_GameResponse implements _GameResponse {
 
   @override
   String toString() {
-    return 'GameResponse(id: $id, winner: $winner, firstPlayer: $firstPlayer, secondPlayer: $secondPlayer, created: $created, status: $status)';
+    return 'GameResponse(id: $id, board: $board, winner: $winner, firstPlayer: $firstPlayer, secondPlayer: $secondPlayer, created: $created, status: $status)';
   }
 
   @override
@@ -244,6 +266,7 @@ class _$_GameResponse implements _GameResponse {
         (other.runtimeType == runtimeType &&
             other is _$_GameResponse &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other._board, _board) &&
             const DeepCollectionEquality().equals(other.winner, winner) &&
             const DeepCollectionEquality()
                 .equals(other.firstPlayer, firstPlayer) &&
@@ -258,6 +281,7 @@ class _$_GameResponse implements _GameResponse {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(_board),
       const DeepCollectionEquality().hash(winner),
       const DeepCollectionEquality().hash(firstPlayer),
       const DeepCollectionEquality().hash(secondPlayer),
@@ -278,11 +302,10 @@ class _$_GameResponse implements _GameResponse {
 abstract class _GameResponse implements GameResponse {
   const factory _GameResponse(
       {required final int id,
+      required final List<List<int?>> board,
       required final PlayerResponse? winner,
-      @JsonKey(name: 'first_player')
-          required final PlayerResponse? firstPlayer,
-      @JsonKey(name: 'second_player')
-          required final PlayerResponse? secondPlayer,
+      @JsonKey(name: 'first_player') final PlayerResponse? firstPlayer,
+      @JsonKey(name: 'second_player') final PlayerResponse? secondPlayer,
       required final DateTime created,
       required final String status}) = _$_GameResponse;
 
@@ -291,6 +314,8 @@ abstract class _GameResponse implements GameResponse {
 
   @override
   int get id;
+  @override
+  List<List<int?>> get board;
   @override
   PlayerResponse? get winner;
   @override

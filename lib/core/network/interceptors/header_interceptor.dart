@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
+import 'package:tictactoe/core/di/di_init.dart';
+import 'package:tictactoe/features/common/presentation/blocs/auth_cubit.dart';
 
 import '../../../features/auth/common/auth_constants.dart';
 import '../api_constants.dart';
@@ -30,6 +33,15 @@ class HeaderInterceptor implements Interceptor {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
+    try {
+      if (err.requestOptions.headers.containsKey(authHeader)) {
+        if (err.response?.statusCode == 401) {
+          getIt<AuthCubit>().loggedOut();
+        }
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
     return handler.next(err);
   }
 

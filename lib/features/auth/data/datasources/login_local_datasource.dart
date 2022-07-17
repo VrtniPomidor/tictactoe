@@ -15,6 +15,8 @@ abstract class LoginLocalDataSource {
   Future<UserModel> getUser();
 
   Future<void> cacheUser(UserModel userModel);
+
+  Future<void> clearStorage();
 }
 
 @Injectable(as: LoginLocalDataSource)
@@ -55,5 +57,20 @@ class LoginLocalDataSourceImpl extends LoginLocalDataSource {
 
   Future<Box<UserModel>> _getUserModelBox() async {
     return await Hive.openBox<UserModel>(DiConstants.hiveBoxName);
+  }
+
+  @override
+  Future<void> clearStorage() async {
+    await clearToken();
+    await clearUser();
+  }
+
+  Future<void> clearToken() async {
+    await storage.delete(key: AuthConstants.cachedToken);
+  }
+
+  Future<void> clearUser() async {
+    var openBox = await _getUserModelBox();
+    openBox.clear();
   }
 }
